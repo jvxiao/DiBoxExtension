@@ -1,59 +1,34 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="Content-Security-Policy" content="style-src 'self' 'unsafe-inline'; media-src *;script-src * 'unsafe-inline'">
   <title>Document</title>
 </head>
 <body>
   <div id="app" class="page-root" >
     <div class="search-bar">
-      <input type="text" @click="hdlSearch">
+      <input  id="keyword" type="text" placeholder="请输入..."/>
+      <button id="search-btn">搜索</button>
     </div>
-    <div class="content-list">
-      <div class="item" v-for="item in dataList">
-        {{ item.content }}-{{ item.source }}-{{ item.createTime }}
-      </div>
-    </div>
+    <div class="content-list" id="content-list"></div>
   </div>
+  <script type="text/javascript" src="./dist/demo.js"></script>
+  <script type="text/javascript" src="./src/js/jquery-1.8.3.js"></script>
+  <script type="text/javascript" src="./src/js/main/popup.js"></script>
 </body>
 <style> 
   .page-root {
     width: 400px;
     height: 500px;
+    overflow-y: scroll;
+  }
+  .item {
+    border-bottom: 1px solid #7edf66;
+    padding: 5px;
   }
 </style>
-<script type="text/javascript" src="./dist/demo.js"></script>
-<script type="text/javascript" src="https://cdn.staticfile.org/vue/2.2.2/vue.min.js"></script>
-<script type="text/javascript">
-
-    var vm = new Vue({
-      el: '#app',
-      data() {
-        return {
-          dataList: [
-            {
-              content: '123',
-              source: 'baidu.com',
-              createTime: '2022-12-31'
-            }
-          ]
-        }
-      },
-      created() {
-        this.getList()
-      },
-      methods: {
-        hdlSearch() {
-
-        },
-        async getList() {
-          let res = await xidb.queryAll('digest')
-          this.$set(this, 'dataList', res.list)
-          console.log(this.dataList)
-        }
-      },
-    })
-</script>
 </html>

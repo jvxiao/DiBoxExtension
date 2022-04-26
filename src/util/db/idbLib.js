@@ -47,7 +47,7 @@ const query = (tableName, condition) => {
       db.query({
         tableName: tableName,
         condition: (item) => { return keys.every(key => condition[key] === item[key]) },
-        success: res => { resolve(res), console.log(res)}
+        success: res => { resolve({ total: res.length, list: res}), console.log(res)}
       })
     })
   })

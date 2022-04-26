@@ -17,7 +17,8 @@ const TABLES = [
       { key: 'id', option: { unique: true }},
       { key: 'content' },
       { key: 'source' },
-      { key: 'createTime' }
+      { key: 'sourceTitle'},
+      { key: 'createTime' },
     ]
   }
 ]
