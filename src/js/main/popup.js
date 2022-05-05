@@ -94,9 +94,3 @@ function renderList(res) {
   $('#content-list').children().remove()
   $('#content-list').append(content)
 }
-
-// function readerNoData() {
-//   let
-//   $('#content-list').children().remove()
-//   $('#content-list').append(content)
-// }

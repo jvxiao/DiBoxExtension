@@ -1,7 +1,7 @@
 const TABLE = 'digest'
 
 chrome.contextMenus.create({
-	title: "保存到DiBox",
+	title: "收集到DiBox",
 	contexts: ['selection'],
 	onclick: function(params) {
 		// window.xidb('digest', { content: '测试数据', source: '百度网', createTime: '1678786888'})
