@@ -1,8 +1,9 @@
 function toArray(collection) {
   let i = collection.length - 1
   var ret = new Array(i)
-  while (i--) {
+  while (i >= 0) {
     ret[i] = collection[i]
+    i--
   }
   return ret
 }
@@ -54,6 +55,8 @@ $(document).ready(() => {
 
 function renderList(res) {
   let content = ''
+  res.list = toArray(res.list)
+  res.list.reverse()
   for(let i=0; i < res.list.length; i++){
     item = res.list[i]
     content += `
