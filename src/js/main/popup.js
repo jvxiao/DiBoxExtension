@@ -1,4 +1,5 @@
 function toArray(collection) {
+  if (!collection.length) return []
   let i = collection.length - 1
   var ret = new Array(i)
   while (i >= 0) {
@@ -40,6 +41,20 @@ $('#search-btn').click(e => {
   })
 })
 
+$('#reset-btn').click(e => {
+  $('#keyword').val('')
+  xidb.queryAll('digest').then(res => {
+    if (res && res.list) {
+      let content = ''
+      xidb.queryAll('digest').then(res => {
+        if (res && res.list) {
+          renderList(res)
+        }
+      })
+    }
+  })
+})
+
 $(document).ready(() => {
   xidb.queryAll('digest').then(res => {
     if (res && res.list) {
@@ -57,18 +72,31 @@ function renderList(res) {
   let content = ''
   res.list = toArray(res.list)
   res.list.reverse()
-  for(let i=0; i < res.list.length; i++){
-    item = res.list[i]
-    content += `
-      <div class='item'> 
-        <p class='content'>${item.content} </p>
-        <div class='meta'>
-          <a class='meta_source text-ellipse' href='${item.source}'>${item.source}</a>
-          <span  class='meta_createTime'>${formatTime('YYYY-mm-dd HH:MM:SS', item.createTime)}</span> 
+  if (res.list.length) {
+    for(let i=0; i < res.list.length; i++){
+      item = res.list[i]
+      content += `
+        <div class='item'> 
+          <p class='content'>${item.content} </p>
+          <div class='meta'>
+            <a class='meta_source text-ellipse' href='${item.source}'>${item.source}</a>
+            <span  class='meta_createTime'>${formatTime('YYYY-mm-dd HH:MM:SS', item.createTime)}</span> 
+          </div>
         </div>
-      </div>
-    `
+      `
+    }
+  } else {
+    content = `
+      <div class="no-data">暂无数据</div>
+     `
   }
+
   $('#content-list').children().remove()
   $('#content-list').append(content)
 }
+
+// function readerNoData() {
+//   let
+//   $('#content-list').children().remove()
+//   $('#content-list').append(content)
+// }
