@@ -47,7 +47,24 @@ const query = (tableName, condition) => {
       db.query({
         tableName: tableName,
         condition: (item) => { return keys.every(key => condition[key] === item[key]) },
-        success: res => { resolve({ total: res.length, list: res}), console.log(res)}
+        success: res => { resolve({ total: res.length, list: res})}
+      })
+    })
+  })
+  return promise
+}
+
+//模糊查询
+const queryByKeyword = (tableName, key, value) => {
+  const promise = new Promise((resolve, reject) => {
+    request.then(db => {
+      db.query({
+        tableName: tableName,
+        condition: (item) => {
+          let reg = new RegExp(value+'', 'g')
+          return reg.test(item[key])
+        },
+        success: res => {resolve({ total: res.length, list: res})}
       })
     })
   })
@@ -94,6 +111,7 @@ var XIDB = function() {
   this.queryAll = queryAll
   this.update = update
   this.del = del
+  this.queryByKeyword = queryByKeyword
 }
 
 const xidb = new XIDB()

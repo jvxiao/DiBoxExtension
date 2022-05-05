@@ -31,7 +31,7 @@ function formatTime(fmt, timeStamp) {
 
 $('#search-btn').click(e => {
   let input = $('#keyword').val()
-  xidb.query('digest', {content: input}).then(res => {
+  xidb.queryByKeyword('digest', 'content', input).then(res => {
     let content = ''
     if (res && res.list) {
       renderList(res)
