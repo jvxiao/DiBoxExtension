@@ -11,7 +11,7 @@
 <body>
   <div id="app" class="page-root" >
     <div class="search-bar">
-      <input  id="keyword" type="text" placeholder="请输入..."/>
+      <input  id="keyword" type="text" placeholder="请输入关键字" autocomplete="off"/>
       <button id="search-btn">搜索</button>
       <button type="reset" id="reset-btn">重置</button>
     </div>
@@ -27,6 +27,16 @@
     height: 500px;
     overflow-y: scroll;
   }
+  .search-bar input {
+    width: 250px;
+    height: 25px;
+   }
+   .search-bar input:focus-visible {
+     outline: none;
+   }
+   .search-bar button {
+     height: 25px;
+   }
   .item {
     border-bottom: 1px solid #7edf66;
     padding: 5px;
@@ -35,9 +45,6 @@
     font-size: 15px;
     color: #333;
   }
-   .meta_data {
-     
-   }
   .meta {
     display: flex;
     justify-content: space-between;
@@ -58,6 +65,11 @@
   }
   a:link, a:visited, a:hover, a:active {
     color: #34b458
+  }
+  .no-data {
+    padding-top: 40px;
+    text-align: center;
+    color: #666;
   }
 </style>
 </html>
