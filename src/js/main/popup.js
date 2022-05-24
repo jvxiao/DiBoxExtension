@@ -1,3 +1,8 @@
+/*
+ * @Descripttion: 
+ * @Author: jvxiao <jvxiao@outlook.com>
+ * @Date: 2022-05-01 19:51:15
+ */
 function toArray(collection) {
   if (!collection.length) return []
   let i = collection.length - 1
@@ -79,7 +84,7 @@ function renderList(res) {
         <div class='item'> 
           <p class='content'>${item.content} </p>
           <div class='meta'>
-            <a class='meta_source text-ellipse' href='${item.source}'>${item.source}</a>
+            <a class='meta_source text-ellipse' href='javascript:test()'> ${item.source} </a>
             <span  class='meta_createTime'>${formatTime('YYYY-mm-dd HH:MM:SS', item.createTime)}</span> 
           </div>
         </div>
@@ -93,4 +98,13 @@ function renderList(res) {
 
   $('#content-list').children().remove()
   $('#content-list').append(content)
+}
+
+function test() {
+ console.log(1)
+}
+
+function openUrl(url) {
+  var bg = chrome.extension.getBackgroundPage();
+	bg.openUrlInNewTab(url);
 }

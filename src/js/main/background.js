@@ -1,3 +1,8 @@
+/*
+ * @Descripttion: 
+ * @Author: jvxiao <jvxiao@outlook.com>
+ * @Date: 2022-05-01 19:51:15
+ */
 const TABLE = 'digest'
 
 chrome.contextMenus.create({
@@ -18,3 +23,11 @@ chrome.contextMenus.create({
 		})
 	}
 })
+
+
+// 新标签打开链接
+function openUrlInNewTab(url) {
+	chrome.tabs.create({
+		url: url
+	})
+}
